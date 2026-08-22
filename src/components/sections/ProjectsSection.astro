@@ -1,0 +1,64 @@
+---
+import ProjectCard from '../cards/ProjectCard.astro';
+
+import { projects } from '../../data/projects.data';
+---
+
+<h2 class="projects-title" id="projects">
+  Proyectos <span class="text-blue-600">/></span>
+</h2>
+
+<article class="projects-container">
+  <div class="projects-grid">
+    {projects.map((project) => <ProjectCard project={project} />)}
+  </div>
+</article>
+
+<style>
+.projects-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+}
+
+.projects-container {
+  margin: auto;
+  padding: 1rem;
+  max-width: 800px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .projects-title {
+    font-size: 1.8rem;
+  }
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr); /* Mantiene dos columnas */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .projects-title {
+    font-size: 1.6rem;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr; /* Cambia a una columna */
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .projects-title {
+    font-size: 1.4rem;
+  }
+  .projects-container {
+    padding: 0.5rem;
+  }
+}
+</style>

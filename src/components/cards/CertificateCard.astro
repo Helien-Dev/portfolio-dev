@@ -1,0 +1,120 @@
+---
+import { getCardImage } from '../../lib/images';
+
+import DownloadButton from '../buttons/DownloadButton.astro';
+
+import type { CertificateData } from '../../types/certificate.types';
+
+interface Props {
+    certificate: CertificateData;
+}
+
+const { certificate } = Astro.props;
+const certificateImage = await getCardImage(certificate.pdfImage, 280, 400);
+---
+
+<div class="certificate-card">
+    <div class="image-container">
+        <!-- Pdf image -->
+        <img
+            class="certificate-image"
+            src={certificateImage.src}
+            alt={certificate.imageAlt}
+        />
+    </div>
+    <div class="info-container">
+        <h3 class="certificate-title">
+            {certificate.issuer}
+            <span class="text-blue-600">|</span>
+            {certificate.title}
+        </h3>
+        <p class="certificate-description">{certificate.description}</p>
+        <hr class="divider" />
+        <DownloadButton
+            href={certificate.pdfSrc}
+            label={certificate.pdfName}
+            fileName={certificate.pdfName}
+        />
+    </div>
+</div>
+
+<style>
+/* Estructura base */
+.certificate-card {
+    background-color: #1c1c1f;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.certificate-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 1.5rem;
+}
+
+.info-container {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.certificate-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.certificate-description {
+    margin-bottom: 1rem;
+}
+
+.divider {
+    border-color: #2563eb;
+    border-width: 2px;
+    border-radius: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 1024px) {
+    .certificate-title {
+        font-size: 1.8rem;
+    }
+    .certificate-image {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .certificate-title {
+        font-size: 1.6rem;
+    }
+    .certificate-image {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .certificate-title {
+        font-size: 1.4rem;
+    }
+    .certificate-card {
+        flex-direction: column;
+        padding: 0.75rem;
+    }
+    .certificate-image {
+        max-width: 300px;
+    }
+}
+</style>

@@ -1,0 +1,117 @@
+---
+import GithubButton from '../buttons/GithubButton.astro';
+import DailyButton from '../buttons/DailyButton.astro';
+
+import { getCardImage } from '../../lib/images';
+
+import type { ProjectCardData } from '../../types/project.types';
+
+interface Props {
+    project: ProjectCardData;
+}
+
+const { project } = Astro.props;
+const projectImage = await getCardImage(project.image, 252, 255);
+---
+
+<div class="project-card">
+    <article class="project-data">
+        <div class="image-container">
+            <img class="project-image" src={projectImage.src} alt={project.imageAlt}>
+        </div>
+        <div class="project-content">
+            <h2 class="project-title">{project.title}</h2>
+            <p class="project-description">{project.description}</p>
+        </div>
+        <div class="button-container">
+            <GithubButton href={project.githubLink} />
+            <DailyButton href={project.dailyLink} />
+        </div>
+    </article>
+</div>
+
+<style>
+/* Estilos base */
+.project-card {
+  background-color: #1c1c1f;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.5); /* Sombra azul en hover */
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.project-image {
+  border-radius: 1.5rem;
+  height: 255px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.project-content {
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.project-description {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+  .project-title {
+    font-size: 1.4rem;
+  }
+  .project-description {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .project-card {
+    padding: 1rem;
+  }
+  .project-image {
+    height: 200px;
+  }
+  .project-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .project-card {
+    padding: 0.75rem;
+  }
+  .project-image {
+    height: 180px;
+  }
+  .project-title {
+    font-size: 1.2rem;
+  }
+  .project-description {
+    font-size: 0.9rem;
+  }
+}
+</style>

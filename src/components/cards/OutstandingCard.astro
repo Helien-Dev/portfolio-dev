@@ -1,0 +1,158 @@
+---
+import GithubButton from '../buttons/GithubButton.astro';
+import WebButton from '../buttons/WebButton.astro';
+import DailyButton from '../buttons/DailyButton.astro';
+
+import { getCardImage } from '../../lib/images';
+
+import type { OutstandingProjectData } from '../../types/project.types';
+
+interface Props {
+    project: OutstandingProjectData;
+}
+
+const { project } = Astro.props;
+
+const projectImage = await getCardImage(project.image, 500, 300);
+---
+
+<div class="bg-container">
+  <div class="project-info">
+      <!-- Project presentation -->
+      <div>
+          <img class="project-image" src={projectImage.src} alt={project.imageAlt} >
+      </div>
+      <div class="project-description">
+          <!-- Project description -->
+          <h3 class="project-title">{project.title} <span class="inline text-blue-600">|</span> {project.subtitle}</h3>
+          <p class="text-pretty">{project.description}</p>
+          <hr class="project-divider">
+      </div>
+  </div>
+
+  <div class="project-difficulties">
+      <!-- Project difficulties explanation -->
+      <h3 class="project-title">{project.difficultiesTitle} <span class="inline text-blue-600">/></span></h3>
+      <p>{project.difficultiesDescription}</p>
+      <div class="project-media">
+          <div>
+              <p>Demo:</p>
+              <iframe class="project-iframe" src={project.youtubeLink} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <!-- Buttons Section -->
+          <div class="buttons-section">
+              <WebButton href={project.webLink} />
+              <GithubButton href={project.githubLink} />
+              <DailyButton href={project.dailyLink} />
+          </div>
+      </div>
+  </div>
+</div>
+
+<style>
+.bg-container {
+background-color: #1c1c1f;
+padding: 1rem;
+border-radius: 1.5rem;
+display: flex;
+flex-direction: column;
+margin-top: 1.5rem;
+transition: transform 0.2s ease-in-out;
+}
+
+.bg-container:hover {
+transform: scale(1.05);
+}
+
+.project-info {
+display: flex;
+flex-direction: row;
+gap: 1rem;
+align-items: center;
+}
+
+.project-image {
+max-width: 100%;
+width: 500px;
+height: auto;
+border-radius: 1.5rem;
+}
+
+.project-description {
+flex: 1;
+}
+
+.project-title {
+font-size: 1.6rem;
+font-weight: bold;
+}
+
+.text-pretty {
+font-size: 1rem;
+line-height: 1.5;
+}
+
+.project-divider {
+border-color: #2563eb; /* Azul */
+border-width: 2px;
+border-radius: 1.5rem;
+}
+
+.project-difficulties {
+margin-top: 1.5rem;
+}
+
+.project-media {
+padding-top: 1.25rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+}
+
+.project-iframe {
+width: 100%;
+max-width: 560px;
+height: 315px;
+border: 0;
+border-radius: 1.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+.project-info {
+  flex-direction: column;
+  align-items: center;
+}
+.project-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+}
+
+@media screen and (max-width: 768px) {
+.project-title {
+  font-size: 1.4rem;
+}
+.project-iframe {
+  max-width: 100%;
+  height: auto;
+}
+}
+
+@media screen and (max-width: 640px) {
+.bg-container {
+  padding: 0.75rem;
+}
+.project-title {
+  font-size: 1.2rem;
+}
+.project-info img {
+  max-width: 100%;
+}
+.project-media {
+  flex-direction: column; /* Cambia la disposición a columna en pantallas pequeñas */
+  align-items: center;
+}
+}
+</style>
