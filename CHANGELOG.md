@@ -1,0 +1,96 @@
+# Registro de cambios
+
+Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
+
+## 21 de agosto de 2026 (`00cacb6`–`f2b029f`)
+
+Modernización completa del stack técnico y reestructuración del código, tras casi dos años sin actividad en el repositorio.
+
+### Agregado
+
+- Migración del gestor de paquetes de npm a pnpm (`pnpm-lock.yaml`, `pnpm-workspace.yaml`).
+- Actualización de Astro de la versión 4.16 a la 7.2.4.
+- Actualización de Tailwind CSS de la versión 3.4 a la 4.3, usando el plugin oficial `@tailwindcss/vite` en lugar de `@astrojs/tailwind`, que no tiene soporte para Tailwind v4.
+- Reemplazo de la librería `tw-elements` (sin soporte para Tailwind v4) por una función propia en TypeScript para el menú colapsable de la barra de navegación.
+- Nueva estructura de carpetas en `src/`, organizada por rol: `components/layout`, `components/sections`, `components/cards`, `components/buttons`, `components/ui`, `data/`, `types/`, `lib/` y `scripts/`.
+- Interfaces de TypeScript compartidas para las props de los componentes y la forma de los datos (`src/types/`).
+- Contenido del sitio (proyectos, certificados, proyectos destacados) extraído del marcado y convertido en arreglos tipados (`src/data/`).
+- Lógica de procesamiento de imágenes centralizada en un módulo reutilizable (`src/lib/images.ts`).
+- Archivo `README.md` con la descripción del proyecto, las tecnologías usadas y la guía de instalación.
+- Archivo `LICENSE` (MIT), recuperado del historial del repositorio.
+- Documentación de la estructura del proyecto y de las convenciones de TypeScript en `AGENTS.md` (enlazado también como `CLAUDE.md`).
+- Symlink `CLAUDE.md` → `AGENTS.md`, de forma que ambos apunten al mismo documento de convenciones.
+
+### Corregido
+
+- Veintiséis vulnerabilidades de seguridad reportadas por `npm audit`, heredadas de versiones desactualizadas de Astro y de su cadena de herramientas (esbuild, Vite, sharp, Rollup, entre otras).
+- Etiqueta `<section>` sin cerrar en la página principal, que impedía compilar el proyecto con el compilador de Astro 7.
+- Componentes (`ProjectCard`, `OutstandingCard`, `CertificateCard`) cuyas props no se tipaban correctamente por nombrar su interfaz de forma distinta a `Props`, el nombre que Astro requiere para inferir los tipos automáticamente.
+- Código muerto en el componente de certificados: `getImage` se importaba pero nunca se invocaba, dejando esas imágenes sin optimizar.
+- Rutas inexistentes generadas por accidente (`/aboutMe`, `/skills`, `/contact`, `/certificates`, `/projects`, `/outstanding`), producto de que esos archivos de sección vivían dentro de `src/pages/` sin ser páginas reales.
+- Enlaces sin destino (`href=""` o `href="#"`) en las tarjetas de habilidades y en un ícono de la sección de presentación, que recargaban la página al hacer clic.
+- Atributo `frameborder` (obsoleto) en el iframe de YouTube, reemplazado por la propiedad CSS `border: 0`.
+- Enlace a la licencia en el pie de página, que apuntaba a un repositorio (`Portfolio-astro`) distinto al actual (`portfolio-dev`).
+
+### Cambiado
+
+- Componentes y archivos renombrados a `PascalCase` consistente (por ejemplo, `Daily_button.astro` a `DailyButton.astro`, `Outstanding_section.astro` a `OutstandingCard.astro`).
+- Prop `link` de los botones renombrada a `href`, para que coincida con el atributo real del elemento HTML que representa.
+- Script de cliente `src/js/main.js` convertido a TypeScript y trasladado a `src/scripts/main.ts`.
+
+### Eliminado
+
+- Dependencias `@astrojs/tailwind`, `tw-elements`, `autoprefixer`, `postcss` y `postcss-import`.
+- Archivos generados u obsoletos: `package-lock.json`, `tailwind.config.js`, `output.css`, `main.css`.
+
+## 6 al 9 de noviembre de 2024 (`6031a87`–`dd435d3`)
+
+Ajustes de responsividad, incorporación del contacto y cierre de pendientes antes de una pausa prolongada en el desarrollo.
+
+### Agregado
+
+- Diseño responsivo aplicado a todas las secciones del sitio.
+- Sección de contacto.
+- Dominio propio enlazado desde el botón "Daily".
+- Imagen del proyecto "Honey Bun".
+
+### Cambiado
+
+- Enlace del proyecto "Honey Bun" actualizado.
+- Currículum (CV) actualizado, con una corrección posterior adicional.
+- Rutas de archivos y parámetros de la sección de contacto ajustados.
+- Pie de página y licencia modificados.
+
+### Corregido
+
+- Problemas de seguridad detectados en el proyecto.
+- Error en la ruta del archivo de currículum.
+
+## 10 al 15 de octubre de 2024 (`694b25f`–`b0c94a0`)
+
+Construcción inicial del sitio, desde el andamiaje del proyecto hasta las primeras versiones de todas sus secciones.
+
+### Agregado
+
+- Proyecto inicializado con el generador oficial de Astro.
+- Configuración de Tailwind CSS.
+- Barra de navegación, construida y luego corregida en varias iteraciones.
+- Sección de presentación, con foto de perfil animada.
+- Sección de proyectos destacados, con su componente y contenido.
+- Sección de proyectos regulares, con su componente y contenido.
+- Sección de habilidades.
+- Tarjetas de certificados destacados.
+- Botones de enlace a GitHub, sitio web y Daily.
+- Componente de descarga de archivos (usado para el CV y los certificados).
+- Favicon del sitio.
+- Separador visual (barra vertical) con color distintivo.
+- Comando de ejecución agregado al Dockerfile.
+
+### Corregido
+
+- Error en la ruta de las imágenes.
+- Error menor en la sección de proyectos.
+
+### Cambiado
+
+- Formato general del documento (indentación y orden del código).
