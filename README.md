@@ -1,6 +1,5 @@
 # Portfolio Dev
 
-Sitio de portafolio personal de Alvaro Avila. Presenta información de contacto, habilidades, proyectos y certificados, construido como un sitio estático con Astro y Tailwind CSS.
 
 ## Tecnologías
 
