@@ -1,0 +1,91 @@
+---
+import type { ExperienceData } from '../../types/experience.types';
+
+interface Props {
+  experience: ExperienceData;
+}
+
+const { experience: item } = Astro.props;
+---
+
+<li class="timeline-item">
+  <div class="timeline-header">
+    <h3 class="timeline-role">
+      {item.role} <span class="text-blue-600">@</span> {item.company}
+    </h3>
+    {item.current && <span class="timeline-badge">Actual</span>}
+  </div>
+  <p class="timeline-period">{item.period}</p>
+  <ul class="timeline-highlights">
+    {item.highlights.map((highlight) => <li>{highlight}</li>)}
+  </ul>
+  <hr class="divider" />
+</li>
+
+<style>
+  .timeline-item:last-child .divider {
+    display: none;
+  }
+
+  .divider {
+    border: none;
+    border-top: 2px solid #2563eb;
+    border-radius: 1.5rem;
+    opacity: 0.3;
+    margin: 1.5rem 0;
+  }
+
+  .timeline-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .timeline-role {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .timeline-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+  }
+
+  .timeline-period {
+    color: #93a3b8;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .timeline-highlights li {
+    position: relative;
+    padding-left: 1rem;
+    text-align: left;
+  }
+
+  .timeline-highlights li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    color: #2563eb;
+  }
+
+  @media screen and (max-width: 640px) {
+    .timeline-role {
+      font-size: 1.1rem;
+    }
+  }
+</style>

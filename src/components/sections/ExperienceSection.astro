@@ -1,51 +1,46 @@
 ---
-
+import ExperienceCard from '../cards/ExperienceCard.astro';
+import { experience } from '../../data/experience.data';
 ---
 
-<article>
-  <h2 class="text-[2rem] font-bold">
-    Experiencia <p class="inline text-blue-600">/></p>
+<article class="experience-section">
+  <h2 class="experience-title">
+    Experiencia <span class="text-blue-600">/></span>
   </h2>
-  <p class="text-pretty p-4">
-    <p class="inline text-blue-600">Smart Finance — Desarrollador RPA</p> <br>
-      Octubre 2025 - 2026 <br>
-    - Migré procesos de facturación reduciendo el tiempo promedio de 10-15 min a 5-6 min por factura, mejorando drásticamente la productividad y estabilidad del proceso.<br>
-    - Implementé Celery en un proyecto de automatización, reduciendo el tiempo de desarrollo por unidad de 4 min a 1.5 min.<br>
-    - Desplegué y mantuve en producción 14 bots propios para distintas instituciones, asegurando estabilidad y concurrencia sin tiempos de inactividad.<br>
-    - Desarrollé un dashboard de métricas para monitorear errores y desempeño de los bots en tiempo real.<br>
-    - Construí APIs de prueba para entornos sandbox previos a producción.<br>
-    - Trabajé de forma autónoma en la totalidad de los proyectos asignados.<br>
-  </p>
-  <p class="text-pretty p-4">
-    <p class="inline text-blue-600">Freelance — Desarrollo Frontend & Automatización</p> <br>
-      2 años previos a Smart Finance <br>
 
-    - Desarrollo de landing pages para distintos clientes. <br>
-    - Automatizaciones puntuales de procesos para pequeños negocios. <br>
-  </p>
+  <ol class="timeline">
+    {experience.map((item) => <ExperienceCard experience={item} />)}
+  </ol>
 </article>
 
 <style>
-  article {
+  .experience-section {
     max-width: 800px;
     margin: auto;
-    text-align: left;
     padding: 1rem;
+    text-align: left;
   }
 
-  h2 {
+  .experience-title {
     font-size: 2rem;
     font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   @media screen and (max-width: 768px) {
-    h2 {
+    .experience-title {
       font-size: 1.75rem;
     }
   }
 
   @media screen and (max-width: 640px) {
-    h2 {
+    .experience-title {
       font-size: 1.5rem;
     }
   }
