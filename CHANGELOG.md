@@ -2,9 +2,9 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
-## 21 de agosto de 2026 (`00cacb6`–`f2b029f`)
+## [1.0.0] - 2026-08-21 (`00cacb6`–`18fb10b`)
 
-Modernización completa del stack técnico y reestructuración del código, tras casi dos años sin actividad en el repositorio.
+Primera entrega del proyecto como sitio funcional: modernización completa del stack técnico y reestructuración del código, tras casi dos años sin actividad en el repositorio.
 
 ### Agregado
 
