@@ -12,6 +12,7 @@ import DownloadButton from '../components/buttons/DownloadButton.astro';
 
 // Sections
 import AboutSection from '../components/sections/AboutSection.astro';
+import ExperienceSection from '../components/sections/ExperienceSection.astro';
 import ProjectsSection from '../components/sections/ProjectsSection.astro';
 import SkillsSection from '../components/sections/SkillsSection.astro';
 import CertificatesSection from '../components/sections/CertificatesSection.astro';
@@ -39,15 +40,15 @@ const cvDownload = {
 					<div>
 						<h1 class="text-center font-semibold whitespace-nowrap">Alvaro Avila<p class="inline text-blue-600">Dev</p></h1>
 						<Subheading>
-							Full-Stack Developer <span class="text-blue-600 font-extrabold text-2xl">|</span> Data Analyst
+							Desarrollador end<span class="text-blue-600 font-extrabold">-to-</span>end
 						</Subheading>
 
 						<!-- Description Section -->
 						<article class="py-1">
 							<ul class="text-left">
-								<li><p>• Especialista en creacion de aplicaciones webs.</p></li>
-								<li><p>• Experiencia en manejo de base de datos, apis y gestion de servidores.</p></li>
-								<li><p>• Uso de herramientas avanzadas para la extraccion, procesamiento y visualizacion de datos.</p></li>
+								<li><p>- RPA: automatizo procesos de negocio y aumento la productividad.</p></li>
+								<li><p>- DevOps: gestiono la infra del proyecto con Docker y Proxmox.</p></li>
+								<li><p>- Fullstack: desarrollo aplicaciones web completas, de interfaz a API.</p></li>
 							</ul>
 						</article>
 
@@ -72,6 +73,11 @@ const cvDownload = {
 			<!-- About me Section  -->
 			<section class="w-full m-auto max-w-[1000px] py-5">
 				<AboutSection />
+			</section>
+			
+			<!-- Experience Section  -->
+			<section class="w-full m-auto max-w-[1000px] py-5">
+				<ExperienceSection />
 			</section>
 
 			<!-- Projects Section -->
