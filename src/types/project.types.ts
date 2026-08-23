@@ -1,6 +1,6 @@
 import type { ImageMetadata } from 'astro';
 
-/** A regular project shown in the "Proyectos" grid. */
+/** A project shown in "Proyectos" — either in the rotating showcase (featured: true) or the plain list below. */
 export interface ProjectCardData {
   title: string;
   description: string;
@@ -8,6 +8,7 @@ export interface ProjectCardData {
   imageAlt: string;
   githubLink: string;
   dailyLink: string;
+  featured?: boolean;
 }
 
 /** A highlighted project shown in the "Proyectos destacados" section. */

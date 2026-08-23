@@ -7,10 +7,13 @@ import { getCardImage } from '../../lib/images';
 import { projects } from '../../data/projects.data';
 
 const PAGE_SIZE = 5;
-const totalPages = Math.ceil(projects.length / PAGE_SIZE);
+
+const featuredProjects = projects.filter((project) => project.featured);
+const listedProjects = projects.filter((project) => !project.featured);
+const totalPages = Math.ceil(listedProjects.length / PAGE_SIZE);
 
 const slides = await Promise.all(
-  projects.map(async (project) => {
+  featuredProjects.map(async (project) => {
     const image = await getCardImage(project.image, 500, 300);
     return {
       title: project.title,
@@ -34,60 +37,62 @@ const slidesJson = JSON.stringify(slides).replace(/<\//g, '<\\/');
 
 <article class="projects-container">
   <div class="projects-block">
-    <div class="showcase" data-slides={slidesJson}>
-      <img id="showcase-image" class="showcase-image" src={first.imageSrc} alt={first.imageAlt} />
-      <div class="showcase-info">
-        <h3 id="showcase-title" class="showcase-title">{first.title}</h3>
-        <p id="showcase-description" class="showcase-description">{first.description}</p>
-        <div class="showcase-buttons">
-          <GithubButton href={first.githubLink} />
-          <DailyButton href={first.dailyLink} />
-        </div>
-      </div>
+    {
+      first && (
+        <div class="showcase" data-slides={slidesJson}>
+          <img id="showcase-image" class="showcase-image" src={first.imageSrc} alt={first.imageAlt} />
+          <div class="showcase-info">
+            <h3 id="showcase-title" class="showcase-title">{first.title}</h3>
+            <p id="showcase-description" class="showcase-description">{first.description}</p>
+            <div class="showcase-buttons">
+              <GithubButton href={first.githubLink} />
+              <DailyButton href={first.dailyLink} />
+            </div>
+          </div>
 
-      <div class="showcase-bullets">
-        {
-          projects.map((_, index) => (
-            <button
-              type="button"
-              class="showcase-bullet"
-              data-index={index}
-              aria-label={`Mostrar proyecto ${index + 1}`}
-            />
-          ))
-        }
-      </div>
-    </div>
-
-    <div class="projects-list-block">
-      <ul class="projects-list">
-        {
-          projects.map((project, index) => (
-            <li class="projects-list-item" data-page={Math.floor(index / PAGE_SIZE)}>
-              <a class="projects-list-link" href={project.githubLink} target="_blank">
-                <span class="projects-list-number">{index + 1}.</span>
-                {project.title}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-
-      {
-        totalPages > 1 && (
-          <div class="list-pagination">
-            {Array.from({ length: totalPages }, (_, page) => (
+          <div class="showcase-bullets">
+            {featuredProjects.map((_, index) => (
               <button
                 type="button"
-                class="list-page-dot"
-                data-page={page}
-                aria-label={`Página ${page + 1}`}
+                class="showcase-bullet"
+                data-index={index}
+                aria-label={`Mostrar proyecto ${index + 1}`}
               />
             ))}
           </div>
-        )
-      }
-    </div>
+        </div>
+      )
+    }
+
+    {
+      listedProjects.length > 0 && (
+        <div class="projects-list-block">
+          <ul class="projects-list">
+            {listedProjects.map((project, index) => (
+              <li class="projects-list-item" data-page={Math.floor(index / PAGE_SIZE)}>
+                <a class="projects-list-link" href={project.githubLink} target="_blank">
+                  <span class="projects-list-number">{index + 1}.</span>
+                  {project.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {totalPages > 1 && (
+            <div class="list-pagination">
+              {Array.from({ length: totalPages }, (_, page) => (
+                <button
+                  type="button"
+                  class="list-page-dot"
+                  data-page={page}
+                  aria-label={`Página ${page + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )
+    }
   </div>
 </article>
 
@@ -186,6 +191,9 @@ const slidesJson = JSON.stringify(slides).replace(/<\//g, '<\\/');
 
   .projects-list-block {
     padding: 0.5rem 2rem 1rem;
+  }
+
+  .showcase + .projects-list-block {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
