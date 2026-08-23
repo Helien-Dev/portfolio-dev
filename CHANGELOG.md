@@ -2,6 +2,26 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [1.1.4] - 2026-08-23 (`9803e44`–`65d69b4`)
+
+Indentación de los logros de Experiencia y corrección del navbar (bug de contraste, orden de links y restos de plantilla).
+
+### Cambiado
+
+- Logros de cada puesto en la sección de Experiencia (`ExperienceCard`) indentados respecto al título del rol y el período, para reforzar que pertenecen a ese apartado.
+- Hover/focus de los links del navbar cambiado de blanco a azul de acento (`text-blue-600`), igual que el resto del sitio.
+- Link de Github del navbar movido fuera del grupo de links de la izquierda (Daily, Proyectos, Contactame) y fijado al borde derecho.
+
+### Corregido
+
+- Bug de contraste en el navbar: los textos y el ícono del menú móvil usaban clases `text-black`/`dark:*` heredadas de la plantilla original, casi invisibles sobre el fondo oscuro del sitio para cualquier visitante con el sistema en modo claro (el sitio no tiene toggle de tema). Reemplazadas por colores fijos legibles.
+- Comentarios desactualizados en el navbar (`Features link`, `Pricing link`) que no correspondían a los links reales (Proyectos, Contactame).
+- `aria-current="page"` aplicado incorrectamente al link externo "Daily".
+
+### Agregado
+
+- Link de Github en el navbar (antes un `<span>` sin destino) ahora apunta a `https://github.com/Helien-Dev`.
+
 ## [1.1.3] - 2026-08-23 (`75a2c92`)
 
 Ajuste de alineación en el Hero: los íconos de redes sociales y el botón de descarga del CV quedan en la misma fila.
