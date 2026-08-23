@@ -89,7 +89,10 @@ a.contact-card:hover .contact-icon {
 }
 
 .contact-heading {
-    color: #2563eb;
+    /* #2563eb (the site's usual accent) only hits a 3.29:1 contrast ratio
+       against this card's background — below the 4.5:1 WCAG AA minimum for
+       this text size. This lighter shade clears it (4.62:1). */
+    color: #3b82f6;
     font-weight: 600;
 }
 

@@ -17,7 +17,7 @@ const projectImage = await getCardImage(project.image, 252, 255);
 <div class="project-card">
     <article class="project-data">
         <div class="image-container">
-            <img class="project-image" src={projectImage.src} alt={project.imageAlt}>
+            <img class="project-image" src={projectImage.src} {...projectImage.attributes} alt={project.imageAlt}>
         </div>
         <div class="project-content">
             <h2 class="project-title">{project.title}</h2>
