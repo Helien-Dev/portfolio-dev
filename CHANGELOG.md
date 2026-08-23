@@ -2,6 +2,14 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [1.1.2] - 2026-08-23 (`c571a57`)
+
+Fondo de página con patrón de cuadrícula sutil, en lugar de un color sólido plano.
+
+### Cambiado
+
+- Fondo global (`html` en `Layout.astro`) actualizado: mantiene el color mate oscuro (`#13151a`) de base y le agrega un grid de líneas grises tenues (celdas de 96px) mediante `linear-gradient`, sin usar imágenes ni SVG.
+
 ## [1.1.1] - 2026-08-23 (`910f8c4`)
 
 Corrección del diseño de la sección de Habilidades, que presentaba problemas de visualización en dispositivos móviles.
