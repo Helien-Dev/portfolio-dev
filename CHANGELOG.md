@@ -2,6 +2,14 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [1.1.3] - 2026-08-23 (`75a2c92`)
+
+Ajuste de alineación en el Hero: los íconos de redes sociales y el botón de descarga del CV quedan en la misma fila.
+
+### Cambiado
+
+- Íconos de redes sociales y botón "Descargar CV" del Hero (`index.astro`), antes apilados en dos filas, ahora comparten una sola fila (`.actions-row`): redes sociales a la izquierda, botón a la derecha, con una separación fija de 50px entre ambos grupos.
+
 ## [1.1.2] - 2026-08-23 (`c571a57`)
 
 Fondo de página con patrón de cuadrícula sutil, en lugar de un color sólido plano.
