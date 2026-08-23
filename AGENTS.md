@@ -20,6 +20,7 @@ This project uses TypeScript exclusively (`.ts` / `.astro` with typed frontmatte
 - **Prefer composition over duplication.** Use component slots, props, and small utility/helper functions to share behavior instead of copy-pasting logic across components or pages.
 - **Naming and structure should scale.** Use `PascalCase` for component files, `camelCase` for functions/variables, and organize by feature/domain as the project grows rather than dumping everything into flat folders.
 - **Type content and data.** When adding content collections or structured data, define and export explicit TypeScript interfaces/types for their shape so consumers get full autocomplete and type-checking.
+- **Comments stay to one line.** Explain the non-obvious "why" in a single, precise, concrete line — never a multi-line paragraph or bullet list. If it needs more than a line, it belongs in a commit message or `AGENTS.md`, not inline.
 
 ## Project structure
 

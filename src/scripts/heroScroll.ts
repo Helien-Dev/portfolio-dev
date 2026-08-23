@@ -1,8 +1,4 @@
-// While the page rests exactly at the hero's top or exactly at the next
-// section's top, the first mouse-wheel nudge (down from the hero, or up
-// from the next section) snaps fully to the other side instead of
-// scrolling partway. Any other scroll gesture (touch, keyboard, or wheel
-// scrolling that starts mid-page) is fully native.
+// At the hero's top or the next section's top, the first wheel nudge snaps fully to the other side instead of scrolling partway; everything else is native scroll.
 const hero = document.querySelector<HTMLElement>('.hero-viewport');
 const nextSection = document.querySelector<HTMLElement>('.about-anchor');
 
@@ -22,8 +18,7 @@ if (hero && nextSection) {
     };
     window.addEventListener('scroll', stopIfSettled, { passive: true });
 
-    // Safety net in case the scroll never rests exactly on targetY
-    // (sub-pixel rounding, or the gesture got interrupted).
+    // Safety net in case the scroll never rests exactly on targetY (rounding, or an interrupted gesture).
     window.setTimeout(() => {
       isSnapping = false;
       window.removeEventListener('scroll', stopIfSettled);
@@ -34,9 +29,7 @@ if (hero && nextSection) {
     'wheel',
     (event) => {
       if (isSnapping) {
-        // Swallow every wheel tick until the snap animation settles, so a
-        // fast scroll gesture (multiple wheel events in a row) can't fight
-        // the in-progress smooth scroll and leave it half-finished.
+        // Swallow every wheel tick until the snap settles, so a fast gesture can't fight the in-progress scroll.
         event.preventDefault();
         return;
       }

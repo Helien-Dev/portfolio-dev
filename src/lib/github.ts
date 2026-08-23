@@ -1,34 +1,8 @@
 import type { ActivityItem, ContributionCalendar, ContributionDay } from '../types/github.types';
 
-/**
- * Fetches a GitHub user's public data at build time only (this module is
- * imported from `.astro` frontmatter, never shipped to the client) — the
- * site stays fully static, no runtime calls from the visitor's browser.
- *
- * Both endpoints work unauthenticated, so a transient outage or rate limit
- * shouldn't take down the whole build: every export here catches its own
- * errors and returns `null` instead of throwing, and the section that
- * renders them skips gracefully when data is missing.
- *
- * The official GitHub API caps unauthenticated requests at 60/hour per IP —
- * easy to hit if the site gets rebuilt/deployed repeatedly in a short
- * window. Setting a `GITHUB_TOKEN` env var at build time raises that to
- * 5000/hour. It's read server-side only via `import.meta.env` — never
- * bundled into client-side code — and is entirely optional.
- *
- * Security notes, if you do set GITHUB_TOKEN:
- * - Use a fine-grained personal access token scoped to
- *   "Public Repositories (read-only)" — NOT a classic token with `repo`
- *   scope. A public-only token can't read private data even if it leaked.
- * - `getRecentActivity` calls the `/users/{username}/events/public`
- *   endpoint specifically (note the `/public`) — GitHub filters this to
- *   public activity only, regardless of the calling token's scope, so
- *   private repo/org events never appear in the response even with a
- *   broader token.
- * - The token is only ever attached to `api.github.com` requests. The
- *   contributions endpoint below is a different (third-party) host and
- *   never receives it — only the public username is sent there.
- */
+// Build-time only, called from .astro frontmatter — never ships to the client, and every export here catches its own errors and returns null instead of throwing.
+
+// Optional: set GITHUB_TOKEN (fine-grained, "Public Repositories read-only" scope) to raise the limit from 60/hour to 5000/hour — never sent to the third-party contributions host below.
 const githubAuthHeaders = import.meta.env.GITHUB_TOKEN
   ? { Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}` }
   : undefined;
@@ -80,9 +54,7 @@ interface GithubEvent {
 /** Recent public activity (pushes, PRs, issues, stars, ...), newest first. */
 export async function getRecentActivity(username: string, limit = 3): Promise<ActivityItem[] | null> {
   try {
-    // per_page stays modest (~5x the display limit) — enough headroom to
-    // find `limit` mappable events even if recent activity is a mix of
-    // types we don't render, without pulling more than needed.
+    // "/public" excludes private activity regardless of token scope; per_page is 5x limit, just enough headroom to find that many mappable events.
     const res = await fetch(
       `https://api.github.com/users/${username}/events/public?per_page=${limit * 5}`,
       { headers: githubAuthHeaders },

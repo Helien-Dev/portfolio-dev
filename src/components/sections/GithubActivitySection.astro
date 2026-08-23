@@ -11,9 +11,7 @@ const [calendar, activity] = await Promise.all([
   getRecentActivity(GITHUB_USERNAME, 3),
 ]);
 
-// Both requests are best-effort (see lib/github.ts) — if GitHub's API is
-// down at build time, skip the section entirely instead of shipping an
-// empty/broken block.
+// Both requests are best-effort (see lib/github.ts) — skip the section entirely if both come back empty.
 const hasContent = Boolean(calendar || activity?.length);
 ---
 
