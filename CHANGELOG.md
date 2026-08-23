@@ -2,6 +2,24 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [1.2.0] - 2026-08-23 (`2136a72`)
+
+Rediseño del Hero: ocupa toda la pantalla inicial, con scroll dirigido hacia "Acerca de mí" e imagen de presentación con medidas fijas.
+
+### Agregado
+
+- El Hero (navbar + presentación) ahora ocupa exactamente el alto del viewport inicial (`header.hero-viewport`, flex column con `min-height: 100svh`), de modo que nada de "Acerca de mí" se asoma antes de hacer scroll.
+- Indicador de scroll minimalista (flecha animada, esquina inferior derecha del Hero) que enlaza a `#about`, con color de acento azul y una animación de rebote sutil (respeta `prefers-reduced-motion`).
+- Navegación dirigida por scroll (`src/scripts/heroScroll.ts`): el primer scroll con la rueda desde el tope del Hero salta directo a "Acerca de mí", y viceversa desde ahí de vuelta al Hero; cualquier otro scroll (más abajo en la página, táctil o teclado) es completamente normal.
+
+### Cambiado
+
+- Imagen de presentación con `width`/`height` fijos en vez de `max-width`/`max-height` fluidos, con las mismas medidas que ya se renderizaban (400×400 escritorio, 300×300 y 250×250 en los breakpoints existentes), neutralizando el `max-width: 100%` heredado del Preflight de Tailwind que las distorsionaba.
+
+### Corregido
+
+- El salto de scroll hero↔"Acerca de mí" necesitaba dos gestos de scroll para completarse: un gesto real de mouse/trackpad manda varios eventos `wheel` seguidos, y los que llegaban durante la animación de snap no se bloqueaban, compitiendo con ella. Ahora se bloquean todos hasta que la animación termina.
+
 ## [1.1.4] - 2026-08-23 (`9803e44`–`65d69b4`)
 
 Indentación de los logros de Experiencia y corrección del navbar (bug de contraste, orden de links y restos de plantilla).
