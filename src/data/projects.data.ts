@@ -25,7 +25,7 @@ export const projects: ProjectCardData[] = [
   },
   {
     title: 'projects-wip',
-    description: 'Aplicación web construida con Astro (en modo dinámico/SSR) que lista un conjunto de repositorios filtrados por ciertos parámetros, mostrando de un vistazo su estado de salud: si está funcionando, su última release, actividad de commits, etc.',
+    description: 'Aplicación web construida con Astro que lista un conjunto de repositorios filtrados por ciertos parámetros.',
     image: pythonOrganizerImage,
     imageAlt: '-',
     githubLink: 'https://github.com/Helien-Dev/projects-wip',
@@ -33,7 +33,7 @@ export const projects: ProjectCardData[] = [
   },
   {
     title: 'self-runnner',
-    description: 'Despliegue y evaluación comparativa de self-hosted runners de CI/CD (GitHub Actions, GitLab CI, Gitea Actions) sobre Proxmox, con aprovisionamiento automatizado (IaC) y runners efímeros.',
+    description: 'Despliegue y evaluación comparativa de self-hosted runners de CI/CD sobre Proxmox y runners efímeros.',
     image: pythonOrganizerImage,
     imageAlt: '-',
     githubLink: 'https://github.com/Helien-Dev/self-runner',
@@ -41,7 +41,7 @@ export const projects: ProjectCardData[] = [
   },
   {
     title: 'ascii-photo',
-    description: 'Herramienta en Python que transforma imágenes en representaciones ASCII, ajustando brillo y proporciones de caracteres para terminal.',
+    description: 'Herramienta en Python que transforma imágenes en representaciones ASCII para terminal.',
     image: pythonOrganizerImage,
     imageAlt: '-',
     githubLink: 'https://github.com/Helien-Dev/ascii-photo',

@@ -73,6 +73,7 @@ const slidesJson = JSON.stringify(slides).replace(/<\//g, '<\\/');
                 <a class="projects-list-link" href={project.githubLink} target="_blank">
                   <span class="projects-list-number">{index + 1}.</span>
                   {project.title}
+                  <span class="projects-list-description">— {project.description}</span>
                 </a>
               </li>
             ))}
@@ -219,7 +220,18 @@ const slidesJson = JSON.stringify(slides).replace(/<\//g, '<\\/');
     transition: color 0.2s ease;
   }
 
+  .projects-list-description {
+    margin-left: 0.5rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.35);
+    transition: color 0.2s ease;
+  }
+
   .projects-list-link:hover {
+    color: #2563eb;
+  }
+
+  .projects-list-link:hover .projects-list-description {
     color: #2563eb;
   }
 
