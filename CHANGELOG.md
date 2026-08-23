@@ -2,6 +2,32 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [1.1.0] - 2026-08-22 (`09bdeea`–`b41f3b0`)
+
+Nueva sección de Experiencia, reagrupación de Habilidades por categorías y configuración de despliegue en Cloudflare Workers.
+
+### Agregado
+
+- Sección de Experiencia laboral (`ExperienceSection`, `ExperienceCard`), con los datos de cada puesto tipados y centralizados en `src/types/experience.types.ts` y `src/data/experience.data.ts`; cada entrada muestra rol, empresa, período y logros, separadas por un divisor, con una insignia "Actual" para el puesto vigente.
+- Habilidades reagrupadas en tres categorías (Fullstack, DevOps, RPA/Automatización), extraídas a un componente `SkillCard` y a datos tipados en `src/types/skill.types.ts` y `src/data/skills.data.ts`.
+- Íconos de TypeScript, FastAPI, Docker, Proxmox, Linux/Ubuntu, CI/CD, Playwright, Patchright y Pywinauto, incorporados a la sección de Habilidades.
+- Configuración de despliegue de assets estáticos a Cloudflare Workers (`wrangler.jsonc`, script `deploy` en `package.json`, dependencia `wrangler`).
+
+### Cambiado
+
+- Contenido de la sección "Acerca de mí" actualizado con una descripción más detallada de la trayectoria profesional.
+- Íconos de la sección de Habilidades reemplazados por versiones monocromáticas consistentes (antes usaban el color de marca de cada logo, lo que rompía la paleta del sitio, de un solo acento azul).
+- Cuadrícula de Habilidades alineada a la izquierda y con altura uniforme entre tarjetas, en lugar del acomodo centrado que dejaba la última fila de cada grupo descuadrada cuando no completaba la fila.
+
+### Corregido
+
+- Etiqueta `<p>` anidada dentro de `<h2>` en las secciones de Experiencia y Acerca de mí (HTML inválido), reemplazada por `<span>`.
+
+### Eliminado
+
+- Íconos de Django, Figma y Node.js en la sección de Habilidades (fuera del alcance de las categorías actuales).
+- Animación de flotación constante ("wave") en los íconos de Habilidades, en favor de una presentación más sobria; se mantiene una reacción sutil al pasar el cursor.
+
 ## [1.0.0] - 2026-08-21 (`00cacb6`–`18fb10b`)
 
 Primera entrega del proyecto como sitio funcional: modernización completa del stack técnico y reestructuración del código, tras casi dos años sin actividad en el repositorio.
