@@ -2,6 +2,16 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [2.1.0] - 2026-08-23 (`ab7e8c5`)
+
+Indexación real en buscadores: sitemap, robots.txt y datos estructurados.
+
+### Agregado
+
+- `sitemap.xml` generado en cada build con la integración oficial `@astrojs/sitemap`.
+- `robots.txt` en `public/`, permitiendo a todos los bots y apuntando al sitemap.
+- Datos estructurados `schema.org Person` (JSON-LD) en `Layout.astro`: nombre, rol, habilidades, ubicación y GitHub, para que Google entienda de quién es el sitio.
+
 ## [2.0.1] - 2026-08-23 (`21b5e86`) — Optimización
 
 Correcciones puntuales de accesibilidad y buenas prácticas encontradas con una auditoría real de Lighthouse (100/100/100/100 tras el fix).
