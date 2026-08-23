@@ -2,6 +2,14 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [2.2.1] - 2026-08-23 (`8c585f0`)
+
+Corrección de overflow horizontal en móvil causado por el calendario de contribuciones de GitHub.
+
+### Corregido
+
+- El heatmap de Actividad de GitHub desbordaba toda la página en móvil (hasta 512px de contenido en una pantalla de 390px): `align-items: center` en su contenedor no restringía el ancho del heatmap, dejándolo crecer a su tamaño natural completo en vez de recortarse/scrollear dentro de la tarjeta. Ahora queda contenido correctamente, y sigue viéndose centrado en desktop cuando cabe completo.
+
 ## [2.2.0] - 2026-08-23 (`36ba508`–`7e6b1ac`)
 
 Sección de Actividad de GitHub, rediseño completo de Proyectos (destacados + lista paginada) y ajustes de layout/accesibilidad.
