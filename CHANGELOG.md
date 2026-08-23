@@ -2,6 +2,16 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [2.0.1] - 2026-08-23 (`21b5e86`) — Optimización
+
+Correcciones puntuales de accesibilidad y buenas prácticas encontradas con una auditoría real de Lighthouse (100/100/100/100 tras el fix).
+
+### Corregido
+
+- Contraste insuficiente (3.29:1) del texto azul en las tarjetas de Contacto — bajo el mínimo 4.5:1 de WCAG AA. Ajustado a un azul más claro (4.62:1).
+- Links de ícono sin nombre accesible en el Hero (GitHub y "ir a contacto"): sin texto ni `aria-label`, un lector de pantalla no tenía nada que anunciar.
+- Aspect ratio incorrecto en las imágenes de certificados: faltaban los atributos `width`/`height` en el `<img>` (ahora se toman de `getImage()`), lo mismo aplicado a las imágenes de proyectos para reducir layout shift.
+
 ## [2.0.0] - 2026-08-23 (`553fa42`–`a773c48`)
 
 Footer completo, auditoría de bugs (SEO, imágenes, contacto) y rediseño de Certificados y Habilidades como bloques unificados de desplegables.
