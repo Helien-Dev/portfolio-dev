@@ -8,66 +8,22 @@ interface Props {
 const { skill } = Astro.props;
 ---
 
-<div class="skill-item">
-  <Fragment set:html={skill.icon} />
-  <span class="skill-name">{skill.name}</span>
-</div>
+<li class="skill-item">{skill.name}</li>
 
 <style>
   .skill-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.6rem;
-    background-color: #1c1c1f;
-    border-radius: 1rem;
-    padding: 1.5rem 1rem;
-    width: 130px;
-    min-height: 132px;
-    text-align: center;
+    font-size: 0.95rem;
     color: #a3adc2;
-    transition:
-      color 0.2s ease,
-      box-shadow 0.2s ease,
-      transform 0.2s ease;
+    transition: color 0.2s ease;
   }
 
   .skill-item:hover {
     color: #2563eb;
-    box-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
-    transform: translateY(-3px);
-  }
-
-  .skill-name {
-    font-size: 0.85rem;
-    color: #e5e7eb;
-  }
-
-  @media screen and (max-width: 1024px) {
-    .skill-item {
-      width: 115px;
-      min-height: 128px;
-      padding: 1.25rem 0.75rem;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .skill-item {
-      width: 100px;
-      min-height: 122px;
-      padding: 1rem 0.5rem;
-    }
   }
 
   @media screen and (max-width: 640px) {
     .skill-item {
-      width: 85px;
-      min-height: 128px;
-      padding: 0.85rem 0.5rem;
-    }
-    .skill-name {
-      font-size: 0.75rem;
+      font-size: 0.85rem;
     }
   }
 </style>

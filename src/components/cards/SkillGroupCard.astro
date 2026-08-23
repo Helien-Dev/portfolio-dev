@@ -1,0 +1,90 @@
+---
+import type { SkillGroupData } from '../../types/skill.types';
+import SkillCard from './SkillCard.astro';
+
+interface Props {
+  group: SkillGroupData;
+}
+
+const { group } = Astro.props;
+---
+
+<details class="skill-group">
+  <summary class="skill-group-summary">
+    <span>{group.title}</span>
+    <svg
+      class="chevron"
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  </summary>
+  <ul class="skill-group-content">
+    {group.skills.map((skill) => <SkillCard skill={skill} />)}
+  </ul>
+</details>
+
+<style>
+  .skill-group {
+    background-color: #1c1c1f;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .skill-group-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    font-weight: bold;
+    font-size: 1.05rem;
+    color: #e5e7eb;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .skill-group-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .skill-group-summary:hover {
+    color: #2563eb;
+  }
+
+  .chevron {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .skill-group[open] .chevron {
+    transform: rotate(180deg);
+  }
+
+  .skill-group-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 1.25rem 1.25rem 2.5rem;
+    list-style: none;
+  }
+
+  @media screen and (max-width: 640px) {
+    .skill-group-summary {
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    .skill-group-content {
+      padding: 0 1rem 1rem 2rem;
+    }
+  }
+</style>

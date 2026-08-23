@@ -1,24 +1,14 @@
 ---
-import Subheading from '../ui/Subheading.astro';
-import SkillCard from '../cards/SkillCard.astro';
+import SkillGroupCard from '../cards/SkillGroupCard.astro';
 import { skillGroups } from '../../data/skills.data';
 ---
 
 <article class="skills-section">
   <h2 class="skills-title">Habilidades <span class="text-blue-600">/></span></h2>
 
-  {
-    skillGroups.map((group) => (
-      <div class="skill-group">
-        <Subheading>{group.title}</Subheading>
-        <div class="skills-grid">
-          {group.skills.map((skill) => (
-            <SkillCard skill={skill} />
-          ))}
-        </div>
-      </div>
-    ))
-  }
+  <div class="skill-groups">
+    {skillGroups.map((group) => <SkillGroupCard group={group} />)}
+  </div>
 </article>
 
 <style>
@@ -26,7 +16,6 @@ import { skillGroups } from '../../data/skills.data';
     max-width: 1200px;
     margin: auto;
     padding: 1rem;
-    text-align: center;
   }
 
   .skills-title {
@@ -36,19 +25,10 @@ import { skillGroups } from '../../data/skills.data';
     text-align: left;
   }
 
-  .skill-group {
-    margin-bottom: 2.5rem;
-  }
-
-  .skill-group:last-child {
-    margin-bottom: 0;
-  }
-
-  .skills-grid {
+  .skill-groups {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    justify-content: flex-start;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   @media screen and (max-width: 1024px) {
