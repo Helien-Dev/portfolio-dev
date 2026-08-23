@@ -2,6 +2,30 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [2.0.0] - 2026-08-23 (`553fa42`–`a773c48`)
+
+Footer completo, auditoría de bugs (SEO, imágenes, contacto) y rediseño de Certificados y Habilidades como bloques unificados de desplegables.
+
+### Agregado
+
+- Footer ampliado: links a "Sobre mí" (corregido para apuntar a `#about`), Proyectos y Contacto; íconos de GitHub y Email (reales, antes no existían en el footer); barra de copyright al pie.
+- Meta tags de SEO en `Layout.astro`: `description` real (antes el placeholder de Astro), Open Graph y Twitter Card completos, `<link rel="canonical">` y `site` configurado en `astro.config.mjs` — compartir el link ahora muestra una tarjeta de vista previa con título, descripción e imagen.
+- Datos de contacto (Email, Celular, WhatsApp) convertidos en links reales (`mailto:`, `tel:`, `wa.me`), con una pequeña animación en el ícono al pasar el mouse.
+
+### Cambiado
+
+- **Optimización de imágenes corregida de raíz**: faltaba la dependencia `sharp`, por lo que `getCardImage` nunca procesaba nada (verificado por MD5 idéntico antes/después del build). Se instaló `sharp` y las imágenes de proyectos/certificados se movieron a `src/assets/images/` (la única ubicación que Astro puede optimizar) — ahora se convierten a WebP con hasta 96% menos peso.
+- Todos los archivos de imagen/PDF usados en el sitio renombrados de nombres tipo hash o de banco de imágenes a nombres descriptivos (`hero-avatar.jpg`, `python-organizer.png`, `certificate-power-bi-basico.*`, `cv-alvaro-avila.pdf`, etc.).
+- Certificados rediseñados como una lista de desplegables (antes tarjetas de imagen siempre visibles): colapsado solo muestra emisor y título; al expandir se ve la imagen completa, la descripción y el botón de descarga. Se corrigió además un recorte incorrecto de la imagen del certificado (se pedía un tamaño 280×400 que no correspondía a la proporción real de la imagen).
+- Certificados y Habilidades pasaron de tener un fondo independiente por ítem a un solo bloque de fondo compartido, sin líneas divisorias entre ítems (mismo criterio que ya usaba Contacto).
+- El primer rol de Habilidades ahora aparece desplegado por defecto al cargar la página.
+- Período del puesto actual en Experiencia corregido ("Octubre 2025 - 2026" sonaba a que ya había terminado, pese al badge "Actual").
+- Hover del footer ya no subraya el texto, para que coincida con el estilo del navbar.
+
+### Eliminado
+
+- ~13.5 MB de imágenes huérfanas en `public/images/` sin ninguna referencia en el código (incluía un archivo de 10.8 MB).
+
 ## [1.2.0] - 2026-08-23 (`2136a72`)
 
 Rediseño del Hero: ocupa toda la pantalla inicial, con scroll dirigido hacia "Acerca de mí" e imagen de presentación con medidas fijas.
