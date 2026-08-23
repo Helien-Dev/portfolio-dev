@@ -2,6 +2,19 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [1.1.1] - 2026-08-23 (`910f8c4`)
+
+Corrección del diseño de la sección de Habilidades, que presentaba problemas de visualización en dispositivos móviles.
+
+### Cambiado
+
+- Sección de Habilidades rediseñada: cada categoría (Fullstack, DevOps, RPA) es ahora un desplegable (`SkillGroupCard`) que, al expandirse, muestra sus habilidades como una lista de texto plano en lugar de una cuadrícula de tarjetas con íconos.
+- Habilidades presentadas como texto simple sin viñetas, indentado respecto al título de la categoría para reforzar la jerarquía visual entre el rol y sus habilidades.
+
+### Eliminado
+
+- Íconos SVG de cada habilidad individual, en favor de una presentación basada únicamente en texto.
+
 ## [1.1.0] - 2026-08-22 (`09bdeea`–`b41f3b0`)
 
 Nueva sección de Experiencia, reagrupación de Habilidades por categorías y configuración de despliegue en Cloudflare Workers.
