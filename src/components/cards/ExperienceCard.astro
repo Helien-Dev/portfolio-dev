@@ -68,6 +68,7 @@ const { experience: item } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin-left: 1.5rem;
   }
 
   .timeline-highlights li {
@@ -86,6 +87,10 @@ const { experience: item } = Astro.props;
   @media screen and (max-width: 640px) {
     .timeline-role {
       font-size: 1.1rem;
+    }
+
+    .timeline-highlights {
+      margin-left: 1rem;
     }
   }
 </style>
