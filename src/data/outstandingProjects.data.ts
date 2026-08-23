@@ -1,8 +1,10 @@
 import type { OutstandingProjectData } from '../types/project.types';
+import honeyBunImage from '../assets/images/outstanding-honey-bun.jpg';
+import drawShareImage from '../assets/images/outstanding-drawshare.jpg';
 
 export const outstandingProjects: OutstandingProjectData[] = [
   {
-    image: '/images/3890438.jpg',
+    image: honeyBunImage,
     imageAlt: 'Descripcion de la imagen',
     title: 'Ecommerce',
     subtitle: 'Honey Bun',
@@ -16,7 +18,7 @@ export const outstandingProjects: OutstandingProjectData[] = [
     dailyLink: 'https://github.com/',
   },
   {
-    image: '/images/person-adding-clothes-cart-closeup-online-shopping-campaign.jpg',
+    image: drawShareImage,
     imageAlt: 'Descripcion de la imagen',
     title: 'Canvas',
     subtitle: 'DrawShare',

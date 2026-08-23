@@ -4,7 +4,7 @@ export const experience: ExperienceData[] = [
   {
     company: 'Smart Finance',
     role: 'Desarrollador RPA',
-    period: 'Octubre 2025 - 2026',
+    period: 'Octubre 2025 - Actual',
     current: true,
     highlights: [
       'Migré procesos de facturación reduciendo el tiempo promedio de 10-15 min a 5-6 min por factura, mejorando drásticamente la productividad y estabilidad del proceso.',

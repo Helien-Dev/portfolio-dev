@@ -10,111 +10,123 @@ interface Props {
 }
 
 const { certificate } = Astro.props;
-const certificateImage = await getCardImage(certificate.pdfImage, 280, 400);
+const certificateImage = await getCardImage(certificate.pdfImage, 700);
 ---
 
-<div class="certificate-card">
-    <div class="image-container">
-        <!-- Pdf image -->
+<details class="certificate-item">
+    <summary class="certificate-summary">
+        <span class="certificate-heading">
+            {certificate.issuer}
+            <span class="text-blue-600">|</span>
+            {certificate.title}
+        </span>
+        <svg
+            class="chevron"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path d="m6 9 6 6 6-6" />
+        </svg>
+    </summary>
+
+    <div class="certificate-content">
         <img
             class="certificate-image"
             src={certificateImage.src}
             alt={certificate.imageAlt}
         />
+        <div class="certificate-info">
+            <p class="certificate-description">{certificate.description}</p>
+            <DownloadButton
+                href={certificate.pdfSrc}
+                label={certificate.pdfName}
+                fileName={certificate.pdfName}
+            />
+        </div>
     </div>
-    <div class="info-container">
-        <h3 class="certificate-title">
-            {certificate.issuer}
-            <span class="text-blue-600">|</span>
-            {certificate.title}
-        </h3>
-        <p class="certificate-description">{certificate.description}</p>
-        <hr class="divider" />
-        <DownloadButton
-            href={certificate.pdfSrc}
-            label={certificate.pdfName}
-            fileName={certificate.pdfName}
-        />
-    </div>
-</div>
+</details>
 
 <style>
-/* Estructura base */
-.certificate-card {
-    background-color: #1c1c1f;
-    padding: 1rem;
-    border-radius: 1.5rem;
+
+.certificate-summary {
     display: flex;
-    gap: 1.5rem;
-    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    list-style: none;
 }
 
-.image-container {
+.certificate-summary::-webkit-details-marker {
+    display: none;
+}
+
+.certificate-summary:hover .certificate-heading {
+    color: #2563eb;
+}
+
+.certificate-heading {
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.chevron {
+    flex-shrink: 0;
+    color: #93a3b8;
+    transition: transform 0.2s ease;
+}
+
+.certificate-item[open] .chevron {
+    transform: rotate(180deg);
+}
+
+.certificate-content {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 0 1.5rem;
 }
 
 .certificate-image {
+    flex: 1 1 320px;
+    max-width: 500px;
     width: 100%;
-    max-width: 600px;
     height: auto;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
 }
 
-.info-container {
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-}
-
-.certificate-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+.certificate-info {
+    flex: 1 1 240px;
 }
 
 .certificate-description {
     margin-bottom: 1rem;
 }
 
-.divider {
-    border-color: #2563eb;
-    border-width: 2px;
-    border-radius: 1.5rem;
-    margin-bottom: 1rem;
-}
-
 /* Estilos responsivos */
 @media screen and (max-width: 1024px) {
-    .certificate-title {
-        font-size: 1.8rem;
-    }
-    .certificate-image {
-        max-width: 500px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .certificate-title {
-        font-size: 1.6rem;
-    }
-    .certificate-image {
-        max-width: 400px;
+    .certificate-heading {
+        font-size: 1rem;
     }
 }
 
 @media screen and (max-width: 640px) {
-    .certificate-title {
-        font-size: 1.4rem;
+    .certificate-summary {
+        padding: 1rem 0;
     }
-    .certificate-card {
+    .certificate-content {
         flex-direction: column;
-        padding: 0.75rem;
-    }
-    .certificate-image {
-        max-width: 300px;
+        padding: 0 0 1rem;
     }
 }
 </style>

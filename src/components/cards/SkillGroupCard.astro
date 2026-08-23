@@ -4,12 +4,14 @@ import SkillCard from './SkillCard.astro';
 
 interface Props {
   group: SkillGroupData;
+  /** Whether this group's dropdown starts expanded. */
+  open?: boolean;
 }
 
-const { group } = Astro.props;
+const { group, open = false } = Astro.props;
 ---
 
-<details class="skill-group">
+<details class="skill-group" open={open}>
   <summary class="skill-group-summary">
     <span>{group.title}</span>
     <svg
@@ -33,18 +35,12 @@ const { group } = Astro.props;
 </details>
 
 <style>
-  .skill-group {
-    background-color: #1c1c1f;
-    border-radius: 1rem;
-    overflow: hidden;
-  }
-
   .skill-group-summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1.1rem 1.25rem;
+    padding: 1.1rem 0;
     font-weight: bold;
     font-size: 1.05rem;
     color: #e5e7eb;
@@ -73,18 +69,18 @@ const { group } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding: 0 1.25rem 1.25rem 2.5rem;
+    padding: 0 0 1.25rem 2.5rem;
     list-style: none;
   }
 
   @media screen and (max-width: 640px) {
     .skill-group-summary {
-      padding: 0.9rem 1rem;
+      padding: 0.9rem 0;
       font-size: 0.95rem;
     }
 
     .skill-group-content {
-      padding: 0 1rem 1rem 2rem;
+      padding: 0 0 1rem 2rem;
     }
   }
 </style>

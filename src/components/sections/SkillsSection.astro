@@ -7,7 +7,7 @@ import { skillGroups } from '../../data/skills.data';
   <h2 class="skills-title">Habilidades <span class="text-blue-600">/></span></h2>
 
   <div class="skill-groups">
-    {skillGroups.map((group) => <SkillGroupCard group={group} />)}
+    {skillGroups.map((group, index) => <SkillGroupCard group={group} open={index === 0} />)}
   </div>
 </article>
 
@@ -26,9 +26,11 @@ import { skillGroups } from '../../data/skills.data';
   }
 
   .skill-groups {
+    background-color: #1c1c1f;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
   }
 
   @media screen and (max-width: 1024px) {
@@ -46,6 +48,10 @@ import { skillGroups } from '../../data/skills.data';
   @media screen and (max-width: 640px) {
     .skills-title {
       font-size: 1.4rem;
+    }
+
+    .skill-groups {
+      padding: 0.5rem 1rem;
     }
   }
 </style>

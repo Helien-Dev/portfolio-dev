@@ -27,6 +27,12 @@ This project uses TypeScript exclusively (`.ts` / `.astro` with typed frontmatte
 
 ```
 src/
+  assets/
+    images/     Images referenced from *.data.ts or components via `import`
+                (never a string path). Astro's image pipeline (`astro:assets`,
+                requires the `sharp` dependency) only optimizes images that
+                live here — anything under `public/` is copied through
+                unprocessed, at its original size and weight.
   components/
     layout/     Navbar, Footer — chrome that wraps every page
     sections/   Page-sized building blocks composed into src/pages/*.astro
