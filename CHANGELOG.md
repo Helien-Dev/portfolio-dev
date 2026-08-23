@@ -2,6 +2,18 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [2.2.2] - 2026-08-23 (`425638a`)
+
+Descripción visible en la lista de proyectos.
+
+### Agregado
+
+- Cada proyecto listado (no destacado) ahora muestra su descripción junto al título, separada por "—" — antes la lista era solo el número y el nombre.
+
+### Cambiado
+
+- La descripción quedó dentro del link (no como texto suelto al lado): pasar el mouse por cualquier parte de la fila —título o descripción— resalta en azul y lleva al repositorio de GitHub del proyecto.
+
 ## [2.2.1] - 2026-08-23 (`8c585f0`)
 
 Corrección de overflow horizontal en móvil causado por el calendario de contribuciones de GitHub.
