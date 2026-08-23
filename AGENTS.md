@@ -55,6 +55,41 @@ Astro components name their props type `Props` (not `Options`, `Config`, or a
 custom name) — Astro only infers `Astro.props`'s type when the type is
 literally called `Props`; anything else silently falls back to `any`.
 
+## Release process
+
+Claude never runs `git commit`, `git push`, `git tag`, or `gh release create` directly in this repo — it edits files and hands over the exact commands for the user to run themselves.
+
+Command formatting rules (violating these has broken pastes in this repo's terminal before — corrupted mid-line, or left bash hanging on an unclosed quote):
+
+- Give the whole sequence as **one single fenced code block** the user copies and pastes once — not one block per command.
+- Every line inside that block must still be short and self-contained: no `\` line continuation, no multi-line quoted strings, no long inline arguments. A long single line (e.g. a full absolute path) wrapping in the terminal is exactly what corrupts on paste, so line *length* matters as much as line *count*.
+- Any long text (release notes, commit bodies) goes in a file referenced with a `--*-file` flag instead of being inlined — and that file's path itself must be short. Write it to something like `/tmp/rn.md`, not a long nested scratchpad path: the path is what ends up embedded in the command line.
+
+Steps for each release:
+
+1. **Bump the version** in `package.json` following semver: `patch` for fixes/tweaks, `minor` for new features, `major` for breaking changes. If the user requests a specific version number that skips releases that never existed, flag the mismatch and confirm before using it.
+2. **Add a `CHANGELOG.md` entry** at the top (newest first), matching the existing format: `## [x.y.z] - YYYY-MM-DD (\`__HASH__\`)`, a one-line summary, then `### Agregado` / `### Cambiado` / `### Corregido` / `### Eliminado` sections (Spanish, only the sections that apply) listing the actual changes. Leave the commit hash as the literal placeholder `__HASH__` — it gets filled in by the commands below, since the real hash isn't known until the fix commit exists.
+3. **Hand the user one single command block** (adjust file names, messages, and version number), formatted per the rules above:
+
+   ```bash
+   git add <changed source files>
+   git commit -m "<type>: <summary of the fix/feature>"
+   HASH=$(git rev-parse --short HEAD)
+   sed -i "s/__HASH__/$HASH/" CHANGELOG.md
+   git add package.json CHANGELOG.md
+   git commit -m "chore: release vX.Y.Z"
+   git tag vX.Y.Z
+   git checkout main
+   git merge --ff-only dev
+   git checkout dev
+   git push origin dev
+   git push origin main
+   git push origin vX.Y.Z
+   gh release create vX.Y.Z --title "vX.Y.Z" --notes-file /tmp/rn.md
+   ```
+
+   `main` and `dev` stay in sync via fast-forward merges (no merge commits) — this only works as long as `main` never receives commits `dev` doesn't have.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
