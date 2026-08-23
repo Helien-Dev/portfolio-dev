@@ -1,0 +1,81 @@
+---
+import type { ContributionDay } from '../../types/github.types';
+
+interface Props {
+  weeks: ContributionDay[][];
+}
+
+const { weeks } = Astro.props;
+
+const dayLabel = (day: ContributionDay): string => {
+  if (day.date.startsWith('pad-')) return '';
+  const date = new Date(day.date).toLocaleDateString('es-CO', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+  const label = day.count === 1 ? 'contribución' : 'contribuciones';
+  return `${day.count} ${label} el ${date}`;
+};
+---
+
+<div class="heatmap" role="img" aria-label="Calendario de contribuciones de GitHub del último año">
+  {
+    weeks.map((week) => (
+      <div class="heatmap-week">
+        {week.map((day) => (
+          <span
+            class="heatmap-day"
+            data-level={day.date.startsWith('pad-') ? undefined : day.level}
+            title={dayLabel(day)}
+          />
+        ))}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .heatmap {
+    display: flex;
+    gap: 3px;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .heatmap-week {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .heatmap-day {
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    background-color: #26262b;
+  }
+
+  .heatmap-day[data-level='1'] {
+    background-color: rgba(37, 99, 235, 0.3);
+  }
+
+  .heatmap-day[data-level='2'] {
+    background-color: rgba(37, 99, 235, 0.55);
+  }
+
+  .heatmap-day[data-level='3'] {
+    background-color: rgba(37, 99, 235, 0.8);
+  }
+
+  .heatmap-day[data-level='4'] {
+    background-color: #2563eb;
+  }
+
+  @media screen and (max-width: 640px) {
+    .heatmap-day {
+      width: 9px;
+      height: 9px;
+    }
+  }
+</style>

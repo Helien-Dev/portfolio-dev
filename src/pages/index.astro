@@ -16,6 +16,7 @@ import ExperienceSection from '../components/sections/ExperienceSection.astro';
 import ProjectsSection from '../components/sections/ProjectsSection.astro';
 import SkillsSection from '../components/sections/SkillsSection.astro';
 import CertificatesSection from '../components/sections/CertificatesSection.astro';
+import GithubActivitySection from '../components/sections/GithubActivitySection.astro';
 import ContactSection from '../components/sections/ContactSection.astro';
 // Note: OutstandingSection exists under components/sections but isn't linked
 // here yet — enable it once there are projects worth featuring separately.
@@ -112,6 +113,11 @@ const cvDownload = {
 			<!-- Certificates Section -->
 			<section class="w-full m-auto max-w-[1000px]">
 				<CertificatesSection />
+			</section>
+
+			<!-- Github Activity Section -->
+			<section class="w-full m-auto max-w-[1000px]">
+				<GithubActivitySection />
 			</section>
 
 			<!-- Contact section -->

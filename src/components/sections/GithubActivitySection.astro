@@ -1,0 +1,116 @@
+---
+import ContributionHeatmap from '../ui/ContributionHeatmap.astro';
+import GithubActivityCard from '../cards/GithubActivityCard.astro';
+
+import { getContributionCalendar, getRecentActivity } from '../../lib/github';
+
+const GITHUB_USERNAME = 'Helien-Dev';
+
+const [calendar, activity] = await Promise.all([
+  getContributionCalendar(GITHUB_USERNAME),
+  getRecentActivity(GITHUB_USERNAME, 3),
+]);
+
+// Both requests are best-effort (see lib/github.ts) — if GitHub's API is
+// down at build time, skip the section entirely instead of shipping an
+// empty/broken block.
+const hasContent = Boolean(calendar || activity?.length);
+---
+
+{
+  hasContent && (
+    <article class="github-section">
+      <h2 class="github-title">
+        Actividad de GitHub <span class="text-blue-600">/></span>
+      </h2>
+
+      <div class="github-content">
+        {calendar && (
+          <div class="heatmap-block">
+            <p class="heatmap-total">
+              {calendar.totalLastYear} contribuciones en el último año
+            </p>
+            <ContributionHeatmap weeks={calendar.weeks} />
+          </div>
+        )}
+
+        {calendar && activity?.length ? <hr class="divider" /> : null}
+
+        {activity && activity.length > 0 && (
+          <ul class="activity-list">
+            {activity.map((item) => (
+              <GithubActivityCard item={item} />
+            ))}
+          </ul>
+        )}
+      </div>
+    </article>
+  )
+}
+
+<style>
+  .github-section {
+    max-width: 1000px;
+    margin: auto;
+    padding: 1.5rem;
+    text-align: left;
+  }
+
+  .github-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+
+  .github-content {
+    background-color: #1c1c1f;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .heatmap-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .heatmap-total {
+    color: #a3adc2;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 1.5rem 0;
+  }
+
+  .activity-list {
+    list-style: none;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .github-title {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .github-title {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .github-title {
+      font-size: 1.4rem;
+    }
+    .github-section {
+      padding: 1rem;
+    }
+    .github-content {
+      padding: 1rem;
+    }
+  }
+</style>

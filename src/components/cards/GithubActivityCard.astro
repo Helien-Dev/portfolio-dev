@@ -1,0 +1,58 @@
+---
+import { formatRelativeDate } from '../../lib/dates';
+import type { ActivityItem } from '../../types/github.types';
+
+interface Props {
+  item: ActivityItem;
+}
+
+const { item } = Astro.props;
+const repoShortName = item.repoName.split('/').at(-1) ?? item.repoName;
+---
+
+<li class="activity-item">
+  <span class="activity-description">
+    {item.description}{' '}
+    <a class="activity-repo" href={item.repoUrl} target="_blank">{repoShortName}</a>
+  </span>
+  <span class="activity-date">{formatRelativeDate(item.date)}</span>
+</li>
+
+<style>
+  .activity-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 0;
+  }
+
+  .activity-description {
+    color: #a3adc2;
+  }
+
+  .activity-repo {
+    color: #e5e7eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .activity-repo:hover {
+    color: #2563eb;
+  }
+
+  .activity-date {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    color: #6b7280;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 640px) {
+    .activity-item {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  }
+</style>
