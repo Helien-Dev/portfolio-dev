@@ -2,6 +2,27 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [2.2.0] - 2026-08-23 (`36ba508`–`7e6b1ac`)
+
+Sección de Actividad de GitHub, rediseño completo de Proyectos (destacados + lista paginada) y ajustes de layout/accesibilidad.
+
+### Agregado
+
+- Sección "Actividad de GitHub": calendario de contribuciones del último año y feed de actividad reciente, obtenidos en build-time (nunca en el navegador del visitante, el sitio sigue siendo 100% estático). Resiliente a fallos/límites de la API — se degrada con gracia en vez de romper el build.
+- Sección "Proyectos" rediseñada por completo: un carrusel de proyectos **destacados** (rotación automática cada 35s, arranca en orden random, bullets clickeables) y, debajo, una lista **numerada y paginada** (5 por página) del resto de proyectos. Cada proyecto se marca con `featured: true` para decidir en cuál de los dos aparece.
+- 20 proyectos de plantilla listos para completar en `projects.data.ts` (varios ya rellenados con contenido real: projects-wip, self-runner, ascii-photo, auto-cloudflared, auto-rdp).
+
+### Cambiado
+
+- Ancho de "Acerca de mí", "Experiencia" y "Proyectos" normalizado a 1000px, igual que Habilidades, Certificados, Contacto y Actividad de GitHub (antes eran 800px, inconsistentes con el resto).
+- Comentarios de todo el código aplanados a una sola línea; regla documentada en `AGENTS.md` para mantenerlo así.
+- Separador visual entre certificados eliminado, para que el bloque se vea unificado (mismo criterio que Habilidades).
+
+### Corregido
+
+- Indicador de scroll del Hero oculto en móvil.
+- Ícono de "Daily" con fallos visuales al rotar entre proyectos destacados — causado por IDs de `<mask>` SVG duplicados al renderizar varias diapositivas a la vez; ahora se actualiza una sola instancia por JS en vez de duplicar el DOM.
+
 ## [2.1.0] - 2026-08-23 (`ab7e8c5`)
 
 Indexación real en buscadores: sitemap, robots.txt y datos estructurados.
