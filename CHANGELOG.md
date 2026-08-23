@@ -2,6 +2,14 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [2.2.3] - 2026-08-23 (`499e1f5`)
+
+Efecto glassmorphism en los bloques de fondo del sitio.
+
+### Cambiado
+
+- Fondo de Habilidades, Certificados, Contacto, Proyectos, Actividad de GitHub y el Footer pasó de un color sólido (`#1c1c1f`) a un efecto "vidrio esmerilado": fondo semi-transparente (`rgba(28, 28, 31, 0.55)`), `backdrop-filter: blur(14px)` y un borde sutil que delimita cada bloque.
+
 ## [2.2.2] - 2026-08-23 (`425638a`)
 
 Descripción visible en la lista de proyectos.
