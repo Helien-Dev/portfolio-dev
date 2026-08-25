@@ -2,6 +2,15 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [2.2.4] - 2026-08-25 (`a11bde7`)
+
+Separación entre imagen y texto en el hero.
+
+### Cambiado
+
+- Espaciado entre la imagen y el texto de presentación del hero aumentado a 50px en escritorio.
+- Espaciado ajustado en tablet (30px) y móvil (20px) para que el layout en columna no quede excesivo en pantallas pequeñas.
+
 ## [2.2.3] - 2026-08-23 (`499e1f5`)
 
 Efecto glassmorphism en los bloques de fondo del sitio.
