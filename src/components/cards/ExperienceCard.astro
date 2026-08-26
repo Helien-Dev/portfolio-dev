@@ -9,16 +9,37 @@ const { experience: item } = Astro.props;
 ---
 
 <li class="timeline-item">
-  <div class="timeline-header">
-    <h3 class="timeline-role">
-      {item.role} <span class="text-blue-600">@</span> {item.company}
-    </h3>
-    {item.current && <span class="timeline-badge">Actual</span>}
-  </div>
-  <p class="timeline-period">{item.period}</p>
-  <ul class="timeline-highlights">
-    {item.highlights.map((highlight) => <li>{highlight}</li>)}
-  </ul>
+  <details class="timeline-details">
+    <summary class="timeline-summary">
+      <div class="timeline-header">
+        <h3 class="timeline-role">
+          {item.role} <span class="text-blue-600">@</span> {item.company}
+        </h3>
+        {item.current && <span class="timeline-badge">Actual</span>}
+      </div>
+      <svg
+        class="chevron"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </summary>
+
+    <div class="timeline-content">
+      <p class="timeline-period">{item.period}</p>
+      <ul class="timeline-highlights">
+        {item.highlights.map((highlight) => <li>{highlight}</li>)}
+      </ul>
+    </div>
+  </details>
   <hr class="divider" />
 </li>
 
@@ -35,7 +56,26 @@ const { experience: item } = Astro.props;
     margin: 1.5rem 0;
   }
 
+  .timeline-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .timeline-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .timeline-summary:hover .timeline-role,
+  .timeline-summary:hover .chevron {
+    color: #fb923c;
+  }
+
   .timeline-header {
+    flex: 1;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -45,6 +85,7 @@ const { experience: item } = Astro.props;
   .timeline-role {
     font-size: 1.25rem;
     font-weight: bold;
+    transition: color 0.2s ease;
   }
 
   .timeline-badge {
@@ -58,9 +99,28 @@ const { experience: item } = Astro.props;
     padding: 0.15rem 0.6rem;
   }
 
+  .chevron {
+    flex-shrink: 0;
+    color: #93a3b8;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .timeline-details[open] .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* The dropdown acts as a toggle button: stays highlighted while open, not just on hover. */
+  .timeline-details[open] .timeline-role,
+  .timeline-details[open] .chevron {
+    color: #fb923c;
+  }
+
+  .timeline-content {
+    padding-top: 0.75rem;
+  }
+
   .timeline-period {
     color: #93a3b8;
-    margin-top: 0.25rem;
     margin-bottom: 1rem;
   }
 

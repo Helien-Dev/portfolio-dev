@@ -70,8 +70,9 @@ const certificateImage = await getCardImage(certificate.pdfImage, 700);
     display: none;
 }
 
-.certificate-summary:hover .certificate-heading {
-    color: #2563eb;
+.certificate-summary:hover .certificate-heading,
+.certificate-summary:hover .chevron {
+    color: #fb923c;
 }
 
 .certificate-heading {
@@ -83,11 +84,17 @@ const certificateImage = await getCardImage(certificate.pdfImage, 700);
 .chevron {
     flex-shrink: 0;
     color: #93a3b8;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .certificate-item[open] .chevron {
     transform: rotate(180deg);
+}
+
+/* The dropdown acts as a toggle button: stays highlighted while open, not just on hover. */
+.certificate-item[open] .certificate-heading,
+.certificate-item[open] .chevron {
+    color: #fb923c;
 }
 
 .certificate-content {
