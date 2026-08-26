@@ -2,6 +2,14 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [2.2.5] - 2026-08-26 (`f3a0c75`)
+
+Restauración del efecto glassmorphism (`backdrop-filter`) que no se veía en producción.
+
+### Corregido
+
+- El fondo difuminado de Habilidades, Certificados, Contacto, Proyectos, Actividad de GitHub y el Footer no se aplicaba en producción, aunque sí funcionaba en desarrollo. Causa: en el CSS fuente `backdrop-filter` (estándar) estaba declarado antes que `-webkit-backdrop-filter` (prefijo); el minificador de CSS usado en el build de producción (Lightning CSS) fusionaba ambas declaraciones con ese orden y descartaba la propiedad estándar, dejando solo la versión con prefijo `-webkit-`, que navegadores basados en Firefox nunca han reconocido. Se corrigió invirtiendo el orden (prefijo primero, estándar al final), que es además la práctica recomendada, y se verificó contra un build real que ambas propiedades quedan presentes.
+
 ## [2.2.4] - 2026-08-25 (`a11bde7`)
 
 Separación entre imagen y texto en el hero.
