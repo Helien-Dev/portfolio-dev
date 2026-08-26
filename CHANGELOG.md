@@ -2,6 +2,20 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [2.3.0] - 2026-08-26 (`d8bd5d7`)
+
+Rediseño de Habilidades (íconos monocromáticos) y Experiencia (desplegables por rol), con un nuevo color de interacción naranja para todos los dropdowns del sitio.
+
+### Agregado
+
+- Cada habilidad en "Habilidades" ahora muestra su ícono de marca (monocromático, sin fondo, 30px, centrado en su celda) en vez de solo el nombre; el nombre aparece como un pequeño tooltip únicamente al pasar el mouse sobre el ícono.
+
+### Cambiado
+
+- Sección "Experiencia" convertida en una lista de desplegables (uno por rol/empresa): colapsada solo se ve el rol, la empresa y el badge "Actual"; al expandir aparecen el período y los logros. Todas inician cerradas.
+- Los íconos de Habilidades pasaron de una lista vertical con el nombre siempre visible a una cuadrícula horizontal centrada de solo íconos.
+- Los tres desplegables del sitio (Habilidades, Certificados y Experiencia) cambiaron su color de interacción de azul a naranja (`#fb923c`, el mismo acento ya usado en el carrusel de Proyectos): se resaltan al pasar el mouse y permanecen en ese color mientras están abiertos, no solo durante el hover.
+
 ## [2.2.4] - 2026-08-25 (`a11bde7`)
 
 Separación entre imagen y texto en el hero.
