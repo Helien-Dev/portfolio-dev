@@ -15,6 +15,13 @@ Rediseño de Habilidades (íconos monocromáticos) y Experiencia (desplegables p
 - Sección "Experiencia" convertida en una lista de desplegables (uno por rol/empresa): colapsada solo se ve el rol, la empresa y el badge "Actual"; al expandir aparecen el período y los logros. Todas inician cerradas.
 - Los íconos de Habilidades pasaron de una lista vertical con el nombre siempre visible a una cuadrícula horizontal centrada de solo íconos.
 - Los tres desplegables del sitio (Habilidades, Certificados y Experiencia) cambiaron su color de interacción de azul a naranja (`#fb923c`, el mismo acento ya usado en el carrusel de Proyectos): se resaltan al pasar el mouse y permanecen en ese color mientras están abiertos, no solo durante el hover.
+## [2.2.5] - 2026-08-26 (`f3a0c75`)
+
+Restauración del efecto glassmorphism (`backdrop-filter`) que no se veía en producción.
+
+### Corregido
+
+- El fondo difuminado de Habilidades, Certificados, Contacto, Proyectos, Actividad de GitHub y el Footer no se aplicaba en producción, aunque sí funcionaba en desarrollo. Causa: en el CSS fuente `backdrop-filter` (estándar) estaba declarado antes que `-webkit-backdrop-filter` (prefijo); el minificador de CSS usado en el build de producción (Lightning CSS) fusionaba ambas declaraciones con ese orden y descartaba la propiedad estándar, dejando solo la versión con prefijo `-webkit-`, que navegadores basados en Firefox nunca han reconocido. Se corrigió invirtiendo el orden (prefijo primero, estándar al final), que es además la práctica recomendada, y se verificó contra un build real que ambas propiedades quedan presentes.
 
 ## [2.2.4] - 2026-08-25 (`a11bde7`)
 
