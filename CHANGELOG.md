@@ -2,6 +2,24 @@
 
 Historial completo del proyecto, reconstruido a partir del historial de commits del repositorio. Los commits de tipo *merge* (fusión de ramas) se omiten como entradas propias porque no aportan cambios adicionales a los ya listados en su período.
 
+## [2.4.0] - 2026-08-28 (`2cf1a33`)
+
+El botón y el enlace de navegación "Daily" pasan a ser "Blog" y apuntan al nuevo blog del portafolio.
+
+### Agregado
+
+- Componente `BlogButton` para el enlace al blog de cada proyecto.
+
+### Cambiado
+
+- El enlace "Daily" de la barra de navegación ahora es "Blog" y apunta a `https://portfolio-blog.alvaroavila.dev/`.
+- Todos los botones "Daily" de Proyectos y Proyectos destacados ahora son "Blog" y apuntan a `https://portfolio-blog.alvaroavila.dev/`.
+- Campo `dailyLink` renombrado a `blogLink` en los datos y tipos de proyectos.
+
+### Eliminado
+
+- Componente `DailyButton`, reemplazado por `BlogButton`.
+
 ## [2.3.0] - 2026-08-26 (`d8bd5d7`)
 
 Rediseño de Habilidades (íconos monocromáticos) y Experiencia (desplegables por rol), con un nuevo color de interacción naranja para todos los dropdowns del sitio.
