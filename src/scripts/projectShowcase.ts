@@ -5,7 +5,7 @@ interface ProjectSlide {
   imageSrc: string;
   imageAlt: string;
   githubLink: string;
-  dailyLink: string;
+  blogLink: string;
 }
 
 const SLIDE_INTERVAL_MS = 35000;
@@ -19,7 +19,7 @@ if (showcase && slidesData) {
   const image = showcase.querySelector<HTMLImageElement>('#showcase-image');
   const title = showcase.querySelector<HTMLElement>('#showcase-title');
   const description = showcase.querySelector<HTMLElement>('#showcase-description');
-  const [githubLink, dailyLink] = showcase.querySelectorAll<HTMLAnchorElement>('.showcase-buttons a');
+  const [githubLink, blogLink] = showcase.querySelectorAll<HTMLAnchorElement>('.showcase-buttons a');
 
   let current = Math.floor(Math.random() * slides.length);
   let timer: ReturnType<typeof setInterval> | undefined;
@@ -34,7 +34,7 @@ if (showcase && slidesData) {
     if (title) title.textContent = slide.title;
     if (description) description.textContent = slide.description;
     if (githubLink) githubLink.href = slide.githubLink;
-    if (dailyLink) dailyLink.href = slide.dailyLink;
+    if (blogLink) blogLink.href = slide.blogLink;
     bullets.forEach((bullet, i) => bullet.classList.toggle('is-active', i === index));
   };
 

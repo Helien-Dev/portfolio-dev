@@ -1,6 +1,6 @@
 ---
 import GithubButton from '../buttons/GithubButton.astro';
-import DailyButton from '../buttons/DailyButton.astro';
+import BlogButton from '../buttons/BlogButton.astro';
 
 import { getCardImage } from '../../lib/images';
 
@@ -21,7 +21,7 @@ const slides = await Promise.all(
       imageSrc: image.src,
       imageAlt: project.imageAlt,
       githubLink: project.githubLink,
-      dailyLink: project.dailyLink,
+      blogLink: project.blogLink,
     };
   }),
 );
@@ -46,7 +46,7 @@ const slidesJson = JSON.stringify(slides).replace(/<\//g, '<\\/');
             <p id="showcase-description" class="showcase-description">{first.description}</p>
             <div class="showcase-buttons">
               <GithubButton href={first.githubLink} />
-              <DailyButton href={first.dailyLink} />
+              <BlogButton href={first.blogLink} />
             </div>
           </div>
 

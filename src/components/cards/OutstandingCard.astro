@@ -1,7 +1,7 @@
 ---
 import GithubButton from '../buttons/GithubButton.astro';
 import WebButton from '../buttons/WebButton.astro';
-import DailyButton from '../buttons/DailyButton.astro';
+import BlogButton from '../buttons/BlogButton.astro';
 
 import { getCardImage } from '../../lib/images';
 
@@ -43,7 +43,7 @@ const projectImage = await getCardImage(project.image, 500, 300);
           <div class="buttons-section">
               <WebButton href={project.webLink} />
               <GithubButton href={project.githubLink} />
-              <DailyButton href={project.dailyLink} />
+              <BlogButton href={project.blogLink} />
           </div>
       </div>
   </div>

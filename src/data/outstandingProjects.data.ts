@@ -15,7 +15,7 @@ export const outstandingProjects: OutstandingProjectData[] = [
     youtubeLink: 'https://www.youtube.com/embed/Pixf6U7x-18?si=npo5GIprTQ75dxi7',
     githubLink: 'https://github.com/',
     webLink: 'https://github.com/',
-    dailyLink: 'https://github.com/',
+    blogLink: 'https://portfolio-blog.alvaroavila.dev/',
   },
   {
     image: drawShareImage,
@@ -29,6 +29,6 @@ export const outstandingProjects: OutstandingProjectData[] = [
     youtubeLink: 'https://www.youtube.com/embed/Pixf6U7x-18?si=npo5GIprTQ75dxi7',
     githubLink: 'https://github.com/',
     webLink: 'https://github.com/',
-    dailyLink: 'https://github.com/',
+    blogLink: 'https://portfolio-blog.alvaroavila.dev/',
   },
 ];

@@ -1,4 +1,4 @@
-/** Props shared by the simple external-link buttons (GitHub, Daily, Web). */
+/** Props shared by the simple external-link buttons (GitHub, Blog, Web). */
 export interface LinkButtonProps {
   href: string;
 }

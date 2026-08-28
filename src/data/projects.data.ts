@@ -10,7 +10,7 @@ export const projects: ProjectCardData[] = [
       'https://res.cloudinary.com/dhbzt4qjn/image/upload/v1731085048/dbkrbhbzinztfpp0fzao.png',
     imageAlt: 'Honey Bun Shop - Tienda',
     githubLink: 'https://github.com/Helien-Dev/Honey-Bun-Django.git',
-    dailyLink: 'https://dailydev.lat/posts/HoneyBunShop/',
+    blogLink: 'https://portfolio-blog.alvaroavila.dev/',
     featured: true,
   },
   {
@@ -20,7 +20,7 @@ export const projects: ProjectCardData[] = [
     image: pythonOrganizerImage,
     imageAlt: 'Python Organizer',
     githubLink: 'https://github.com/Helien-Dev/Python-Organizer.git',
-    dailyLink: 'https://cbb20e34.daily-portfolio.pages.dev/',
+    blogLink: 'https://portfolio-blog.alvaroavila.dev/',
     featured: true,
   },
   {
@@ -29,7 +29,7 @@ export const projects: ProjectCardData[] = [
     image: pythonOrganizerImage,
     imageAlt: '-',
     githubLink: 'https://github.com/Helien-Dev/projects-wip',
-    dailyLink: 'https://wip-projetcs.com',
+    blogLink: 'https://portfolio-blog.alvaroavila.dev/',
   },
   {
     title: 'self-runnner',
@@ -37,7 +37,7 @@ export const projects: ProjectCardData[] = [
     image: pythonOrganizerImage,
     imageAlt: '-',
     githubLink: 'https://github.com/Helien-Dev/self-runner',
-    dailyLink: 'https://wip-projetcs.com',
+    blogLink: 'https://portfolio-blog.alvaroavila.dev/',
   },
   {
     title: 'ascii-photo',
@@ -45,7 +45,7 @@ export const projects: ProjectCardData[] = [
     image: pythonOrganizerImage,
     imageAlt: '-',
     githubLink: 'https://github.com/Helien-Dev/ascii-photo',
-    dailyLink: 'https://wip-projetcs.com',
+    blogLink: 'https://portfolio-blog.alvaroavila.dev/',
   },
   {
     title: 'auto-cloudflared',
@@ -53,7 +53,7 @@ export const projects: ProjectCardData[] = [
     image: pythonOrganizerImage,
     imageAlt: '-',
     githubLink: 'https://github.com/Helien-Dev/auto-cloudflared',
-    dailyLink: 'https://wip-projetcs.com',
+    blogLink: 'https://portfolio-blog.alvaroavila.dev/',
   },
   {
     title: 'auto-rdp',
@@ -61,6 +61,6 @@ export const projects: ProjectCardData[] = [
     image: pythonOrganizerImage,
     imageAlt: '-',
     githubLink: 'https://github.com/Helien-Dev/auto-rdp',
-    dailyLink: 'https://wip-projetcs.com',
+    blogLink: 'https://portfolio-blog.alvaroavila.dev/',
   },
 ];

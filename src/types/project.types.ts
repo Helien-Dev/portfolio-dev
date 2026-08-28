@@ -7,7 +7,7 @@ export interface ProjectCardData {
   image: string | ImageMetadata;
   imageAlt: string;
   githubLink: string;
-  dailyLink: string;
+  blogLink: string;
   featured?: boolean;
 }
 
@@ -23,5 +23,5 @@ export interface OutstandingProjectData {
   youtubeLink: string;
   githubLink: string;
   webLink: string;
-  dailyLink: string;
+  blogLink: string;
 }
